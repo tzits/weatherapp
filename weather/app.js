@@ -9,6 +9,21 @@ window.addEventListener('load', () => {
     let degreeSpan = document.querySelector('.cf')
     let realFeel = document.querySelector('.realfeel')
 
+    const changeUnits = (unit, temp, feel) => {
+        degreeSpan.textContent = unit;
+        temperatureDegree.textContent = temp;
+        realFeel.textContent = `feels like ${feel}`
+    }
+
+    const setConditions = (temp, text, tz, feel, icon) => {
+        temperatureDegree.textContent = temp;
+        temperatureDescription.textContent = text;
+        locationTimezone.textContent = `Timezone = ${tz}`;
+        realFeel.textContent = `feels like ${feel}`
+        icon = 'https:' + icon
+        myIcon.src = icon;
+        myIcon.setAttribute("style", "height: 100px; width: 100px")
+    }
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
@@ -23,24 +38,13 @@ window.addEventListener('load', () => {
                     const {temp_c, temp_f, feelslike_c, feelslike_f, condition} = data.current
                     let {text, icon} = condition
 
-                    temperatureDegree.textContent = temp_f;
-                    temperatureDescription.textContent = text;
-                    locationTimezone.textContent = `Timezone = ${data.location.tz_id}`
-                    realFeel.textContent = `feels like ${feelslike_f}`
-
-                    icon = 'https:' + icon
-                    myIcon.src = icon
-                    myIcon.setAttribute("style", "height: 100px; width: 100px")
+                    setConditions(temp_f, text, data.location.tz_id, feelslike_f, icon)
 
                     degreeSection.addEventListener('click', () => {
                         if (degreeSpan.textContent === 'F') {
-                            degreeSpan.textContent = 'C'
-                            temperatureDegree.textContent = temp_c
-                            realFeel.textContent = `feels like ${feelslike_c}`
+                            changeUnits('C', temp_c, feelslike_c)
                         } else {
-                            degreeSpan.textContent = 'F'
-                            temperatureDegree.textContent = temp_f
-                            realFeel.textContent = `feels like ${feelslike_f}`
+                            changeUnits('F', temp_f, feelslike_f)
 
                         }
                     })
