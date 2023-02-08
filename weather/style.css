@@ -41,3 +41,37 @@ body {
 .degree-section h2 {
     font-size: 40px;
 }
+
+.input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-span {
+    display: flex;
+    padding-top: 10px;
+}
+
+.realfeel, .temperature-description {
+    opacity: .8;
+}
+
+.zip {
+    border-radius: 5px;
+    padding: 5px;
+    border: none;
+    margin-right: 5px;
+}
+
+label {
+    font-size: 24px;
+}
+
+.submit {
+    border-radius: 5px;
+    padding: 7px;
+    border: none;
+    background-color: rgb(229, 16, 140);
+}
