@@ -1,8 +1,8 @@
 const findWeather = async () => {
-        let zipCode = input.value
-        zipCode = zipCode.replace(/\s/g, "+")
+        let address = input.value
+        address = address.replace(/\s/g, "+")
 
-        if (zipCode) {
+        if (address) {
             let result = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${zipCode},US&key=${gmKey}`) 
             let data = await result.json()
             let {lat, lng} = data.results[0].geometry.location
