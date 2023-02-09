@@ -1,7 +1,7 @@
 const findWeather = async () => {
     //not sure about this
     let address: string = input!.innerHTML
-    zipCode = address.replace(/\s/g, "+")
+    address = address.replace(/\s/g, "+")
 
     if (address) {
         let result = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${zipCode},US&key=${gmKey}`) 
